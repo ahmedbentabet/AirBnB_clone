@@ -15,6 +15,7 @@ from models.base_model import BaseModel
             os.rename("file.json", "new_file.json")
          except FileNotFoundError:
              pass
+     
      @classmethod
      def tearDown(self):
          """Perform cleanup after each individual test."""
@@ -81,7 +82,7 @@ class Test_FileStorage(unittest.TestCase):
     def test_new_method_with_args_raises_type_error(self):
         """Verify that TypeError is raised when an argument is passed to new method."""
         with self.assertRaises(TypeError):
-           models.storage.new(instance_base_model, 1)
+           models.storage.new(BaseModel(), 1)
 
 
     def test_save(self):
@@ -94,8 +95,8 @@ class Test_FileStorage(unittest.TestCase):
         # Verify if file saved
         file_contents = ""
         with open("file.json", "r") as file_obj:
-        file_contents = file_obj.read()
-        self.assertIn("BaseModel." + instance_base_model.id, file_contents)
+            file_contents = file_obj.read()
+            self.assertIn("BaseModel." + instance_base_model.id, file_contents)
 
     def test_save_raises_type_error_with_argument(self):
         """Verify that TypeError is raised when an argument is passed to save."""
