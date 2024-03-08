@@ -8,7 +8,7 @@ import datetime
 class BaseModel:
     """Define BaseModel class"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initializes the BaseModel instance with a unique ID,
         and sets the creation and update times.
