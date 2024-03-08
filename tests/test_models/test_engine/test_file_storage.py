@@ -5,7 +5,6 @@ import os
 import json
 import unittest
 import models
-
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
@@ -14,6 +13,7 @@ from models.place import Place
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+
 
 class Test_FileStorage(unittest.TestCase):
     """Test FileStorage class."""
@@ -39,25 +39,23 @@ class Test_FileStorage(unittest.TestCase):
             pass
         FileStorage._FileStorage_objects = {}
 
-
     def test_FileStorage_instance_creation(self):
         """Verify that a FileStorage instance is created."""
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_FileStorage_with_argument_raises_type_error(self):
-        """Ensure TypeError is raised when a non-empty argument is passed to FileStorage."""
+        """Ensure TypeError is raised when a n-empty
+        arg is passed to FileStorage."""
         self.assertRaises(TypeError, FileStorage, "non_empty_argument")
 
     def test_FileStorage_file_path_is_string(self):
         """Verify that the file_path attribute is a string."""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
-    
     def test_FileStorage_objects_is_dictionary(self):
         """Verify that the objects attribute is a dictionary."""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
-    
     def test_ModelsStorage_instance_creation(self):
         """Verify that models.storage is an instance of FileStorage."""
         self.assertIsInstance(models.storage, FileStorage)
@@ -67,12 +65,12 @@ class Test_FileStorage(unittest.TestCase):
         self.assertEqual(dict, type(models.storage.all()))
 
     def test_all_raises_type_error_with_argument(self):
-        """Verify that TypeError is raised when an argument is passed to the all method."""
+        """Verify that TypeError is raised when an arg to all method."""
         with self.assertRaises(TypeError):
-           models.storage.all(None)
+            models.storage.all(None)
 
     def test_new(self):
-        """Verify that the new method successfully adds instances to the storage and ensures they are saved."""
+        """Verify that new method success adds instances to storage saved."""
         instance_base_model = BaseModel()
         instance_user = User()
         instance_state = State()
@@ -91,27 +89,32 @@ class Test_FileStorage(unittest.TestCase):
         models.storage.new(instance_review)
 
         # Verify if add storage
-        self.assertIn("BaseModel." + instance_base_model.id, models.storage.all().keys())
+        self.assertIn("BaseModel." + instance_base_model.id,
+                      models.storage.all().keys())
         self.assertIn(instance_base_model, models.storage.all().values())
         self.assertIn(instance_base_model, models.storage.all().values())
         self.assertIn("User." + instance_user.id, models.storage.all().keys())
         self.assertIn(instance_user, models.storage.all().values())
-        self.assertIn("State." + instance_state.id, models.storage.all().keys())
+        self.assertIn("State." + instance_state.id,
+                      models.storage.all().keys())
         self.assertIn(instance_state, models.storage.all().values())
-        self.assertIn("Place." + instance_place.id, models.storage.all().keys())
+        self.assertIn("Place." + instance_place.id,
+                      models.storage.all().keys())
         self.assertIn(instance_place, models.storage.all().values())
-        self.assertIn("City." + instance_city.id, models.storage.all().keys())
+        self.assertIn("City." + instance_city.id,
+                      models.storage.all().keys())
         self.assertIn(instance_city, models.storage.all().values())
-        self.assertIn("Amenity." + instance_amenity.id, models.storage.all().keys())
+        self.assertIn("Amenity." + instance_amenity.id,
+                      models.storage.all().keys())
         self.assertIn(instance_amenity, models.storage.all().values())
-        self.assertIn("Review." + instance_review.id, models.storage.all().keys())
+        self.assertIn("Review." + instance_review.id,
+                      models.storage.all().keys())
         self.assertIn(instance_review, models.storage.all().values())
 
     def test_new_method_with_args_raises_type_error(self):
-        """Verify that TypeError is raised when an argument is passed to new method."""
+        """Verify that TypeError is raised when an arg to new method."""
         with self.assertRaises(TypeError):
-           models.storage.new(BaseModel(), 1)
-
+            models.storage.new(BaseModel(), 1)
 
     def test_save(self):
         """Verify that instances are saved in the file."""
@@ -145,11 +148,10 @@ class Test_FileStorage(unittest.TestCase):
             self.assertIn("Amenity." + instance_amenity.id, file_contents)
             self.assertIn("Review." + instance_review.id, file_contents)
 
-
     def test_save_raises_type_error_with_argument(self):
-        """Verify that TypeError is raised when an argument is passed to save."""
+        """Verify that TypeError is raised when an arg is passed to save."""
         with self.assertRaises(TypeError):
-           models.storage.save(None)
+            models.storage.save(None)
 
     def test_reload(self):
         """Verify that instances are reloaded in the storage."""
@@ -183,9 +185,10 @@ class Test_FileStorage(unittest.TestCase):
         self.assertIn("Review." + instance_review.id, reloaded_obj)
 
     def test_reload_raises_type_error_with_argument(self):
-        """Verify that TypeError is raised when an argument is passed to reload."""
+        """Verify that TypeError is raised when an arg is passed to reload."""
         with self.assertRaises(TypeError):
-           models.storage.reload(None)
+            models.storage.reload(None)
 
-    if __name__ == "__main__":
-      unittest.main()
+
+if __name__ == "__main__":
+    unittest.main()
