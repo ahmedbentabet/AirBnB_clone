@@ -16,6 +16,8 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
+        # add this new instance to the FileStorage __objects
+        models.storage.new(self)
 
     def __str__(self):
         """Returns a string representation of the BaseModel instance"""
@@ -26,6 +28,7 @@ class BaseModel:
         """Updates the 'updated_at' attribute to the current datetime."""
 
         self.updated_at = datetime.datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
