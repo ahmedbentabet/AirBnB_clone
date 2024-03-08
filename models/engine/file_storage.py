@@ -29,17 +29,13 @@ class FileStorage:
         """Serializes __objects to the JSON file."""
         serial_objects = {key_obj: value_obj.to_dict() for key_obj, value_obj in FileStorage.__objects.items()}
         with open(FileStorage.__file_path, "w") as file_js:
-            json.dump(serial_objects, file_js, delimiter=4)
+            json.dump(serial_objects, file_js, indent=4)
     
     def reload(self):
         """Deserializes the JSON file to __objects."""
-        try:
-           with open(FileStorage.__file_path, "r") as file_js:
-               filled_data = json.load(file_js)
-               for key_obj, dictionary_obj in filled_data.items():
-                   family_class = dictionary_obj["__class__"]
-                   FileStorage.__objects[key_obj] = eval(family_class)(**dictionary_obj)
-
-        except FileNotFoundError:
-            pass       
-
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r") as file_js:
+                filled_data = json.load(file_js)
+                for key_obj, dictionary_obj in filled_data.items():
+                    clas_nam = dictionary_obj["__class__"]
+                    FileStorage.__objects[key_obj] = eval(clas_nam)(**dictionary_obj)
