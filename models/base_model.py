@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Define the Module base_module"""
+import models
 import uuid
 import datetime
 
