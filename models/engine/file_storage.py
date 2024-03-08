@@ -3,6 +3,12 @@
 import os
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """class attributes."""
@@ -31,8 +37,8 @@ class FileStorage:
            with open(FileStorage.__file_path, "r") as file_js:
                filled_data = json.load(file_js)
                for key_obj, dictionary_obj in filled_data.items():
-               family_class = dictionary_obj["__class__"]
-               FileStorage.__objects[key_obj] = eval(family_class)(**dictionary_obj)
+                   family_class = dictionary_obj["__class__"]
+                   FileStorage.__objects[key_obj] = eval(family_class)(**dictionary_obj)
 
         except FileNotFoundError:
             pass       
