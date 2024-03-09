@@ -192,15 +192,13 @@ class HBNBCommand(cmd.Cmd):
 
         attr_name = list_of_args[2]
         # [1:-1] to remove double quotes and get what is inside
-        attr_value = list_of_args[3][1:-1]
+        if list_of_args[3].startswith('"') and list_of_args[3].endswith('"'):
+            attr_value = list_of_args[3][1:-1]
+        else:
+            attr_value = list_of_args[3]
 
-        obj = storage_instance[key]
-        # Get the attribute type
-        attr_type = type(getattr(obj, attr_name, None))
-        # Cast the attribute value to the correct type
-        attr_value_casted = attr_type(attr_value)
-        # Update the attribute value of the object
-        setattr(obj, attr_name, attr_value_casted)
+        obj = storage.all()[key]
+        setattr(obj, attr_name, attr_value)
 
         storage.save()
 
