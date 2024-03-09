@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = list_of_args[0]
-        if class_name not in HBNBCommand.classes:
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
 
@@ -166,20 +166,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        class_name = list_of_args[0]
-        if class_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-
         if len(list_of_args) == 1:
             print("** instance id missing **")
-            return
-
-        obj_id = list_of_args[1]
-        key = f"{class_name}.{obj_id}"
-        # Check if the instance exists
-        if key not in storage.all():
-            print("** no instance found **")
             return
 
         if len(list_of_args) == 2:
@@ -190,17 +178,38 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
+        class_name = list_of_args[0]
+        if class_name not in self.classes:
+            print("** class doesn't exist **")
+            return
+
+        obj_id = list_of_args[1]
+        key = f"{class_name}.{obj_id}"
+        # Check if the instance exists
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+
         attr_name = list_of_args[2]
-        # [1:-1] to remove double quotes and get what is inside
-        if list_of_args[3].startswith('"') and list_of_args[3].endswith('"'):
-            attr_value = list_of_args[3][1:-1]
-        elif list_of_args[3].startswith("'") and list_of_args[3].endswith("'"):
-            attr_value = list_of_args[3][1:-1]
-        else:
-            attr_value = list_of_args[3]
+    # [1:-1] to remove double quotes and get what is inside
+    # if list_of_args[3].startswith('"') and list_of_args[3].endswith('"'):
+    #     attr_value = list_of_args[3][1:-1]
+    # elif list_of_args[3].startswith("'") and list_of_args[3].endswith("'"):
+    #     attr_value = list_of_args[3][1:-1]
+    # else:
+    #     attr_value = list_of_args[3]
+
+        attr_value = list_of_args[3].strip('"\'')
 
         obj = storage.all()[key]
-        setattr(obj, attr_name, attr_value)
+        if hasattr(obj, attr_name):
+            # If it exists, update its value
+            attr_type = type(getattr(obj, attr_name))
+            attr_value_casted = attr_type(attr_value)
+            setattr(obj, attr_name, attr_value_casted)
+        else:
+            # If it doesn't exist, add a new attribute
+            setattr(obj, attr_name, attr_value)
 
         storage.save()
 
