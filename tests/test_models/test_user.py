@@ -26,35 +26,40 @@ class UserTestReport(unittest.TestCase):
         first_instance = User()
         self.assertIsInstance(first_instnce.email, str)
         self.assertTrue(hasattr(first_instance, "email"))
-        self.assertEqual(first_instance.email, "") #Asuming email initializes as an empty string
+        self.assertEqual(first_instance.email, "")
+        # Asuming email initializes as an empty string
 
     def test_user_password(self):
         """Inspect the password of User entities."""
         first_instance = User()
         self.assertIsInstance(first_instnce.password, str)
         self.assertTrue(hasattr(first_instance, "password"))
-        self.assertEqual(first_instance.password, "") #Asuming password initializes as an empty string
+        self.assertEqual(first_instance.password, "")
+        # Asuming password initializes as an empty string
 
     def test_user_id(self):
         """Exmaine the id property of User objects."""
         first_instance = User()
         self.assertIsInstance(first_instnce.id, str)
         self.assertTrue(hasattr(first_instnce, "id"))
-        self.assertEqual(first_instance.id, "") #Asuming id initializes as an empty string
+        self.assertEqual(first_instance.id, "")
+        # Asuming id initializes as an empty string
 
-     def test_user_last_name(self):
+    def test_user_last_name(self):
         """confirm the last_name property of User instances."""
         first_instance = User()
         self.assertIsInstance(first_instnce.last_name, str)
         self.assertTrue(hasattr(first_instance, "last_name"))
-        self.assertEqual(first_instance.last_name, "") #Asuming last_name initializes as an empty string
+        self.assertEqual(first_instance.last_name, "")
+        # Asuming last_name initializes as an empty string
 
     def test_user_first_name(self):
         """Confirm the first_name property of User instances."""
         first_instance = User()
         self.assertIsInstance(first_instnce.first_name, str)
         self.assertTrue(hasattr(first_instance, "first_name"))
-        self.assertEqual(first_instance.first_name, "") #Asuming first_name initializes as an empty string
+        self.assertEqual(first_instance.first_name, "")
+        # Asuming first_name initializes as an empty string
 
 
 if __name__ == "__main__":
