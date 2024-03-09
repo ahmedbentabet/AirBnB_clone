@@ -194,6 +194,8 @@ class HBNBCommand(cmd.Cmd):
         # [1:-1] to remove double quotes and get what is inside
         if list_of_args[3].startswith('"') and list_of_args[3].endswith('"'):
             attr_value = list_of_args[3][1:-1]
+        elif list_of_args[3].startswith("'") and list_of_args[3].endswith("'"):
+            attr_value = list_of_args[3][1:-1]
         else:
             attr_value = list_of_args[3]
 
