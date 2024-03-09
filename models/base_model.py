@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define the Module base_module"""
 import models
+import models
 import uuid
 import datetime
 
@@ -8,6 +9,7 @@ import datetime
 class BaseModel:
     """Define BaseModel class"""
 
+    def __init__(self, *args, **kwargs):
     def __init__(self, *args, **kwargs):
         """
         Initializes the BaseModel instance with a unique ID,
@@ -58,10 +60,14 @@ class BaseModel:
 
         my_dict = self.__dict__.copy()
         # convert "created_at" and "updated_at" : datetime -> str
+        # convert "created_at" and "updated_at" : datetime -> str
         my_dict['created_at'] = my_dict['created_at'].isoformat()
         my_dict['updated_at'] = my_dict['updated_at'].isoformat()
 
         # add the class name to my_dict
+
+        # add the class name to my_dict
         my_dict['__class__'] = self.__class__.__name__
+
 
         return my_dict

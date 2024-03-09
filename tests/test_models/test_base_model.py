@@ -9,42 +9,42 @@ class TestBaseModel(unittest.TestCase):
     """A test class for the BaseModel class."""
 
     def setUp(self):
-        """Set up a BaseModel instance for testing."""
-        self.my_model = BaseModel()
+        self.base_model = BaseModel()
 
-    def test_id_is_string(self):
-        """Test that the 'id' attribute is a string."""
-        self.assertIsInstance(self.my_model.id, str)
+    def test_initialization(self):
+        """Test proper initialization of BaseModel instance"""
+        self.assertIsNotNone(self.base_model.id)
+        self.assertIsInstance(self.base_model.created_at, datetime.datetime)
+        self.assertIsInstance(self.base_model.updated_at, datetime.datetime)
 
-    def test_created_at_is_datetime(self):
-        """Test that the 'created_at' attribute is a datetime object."""
-        self.assertIsInstance(self.my_model.created_at, datetime.datetime)
+    def test_string_representation(self):
+        """Test the __str__ method for BaseModel instance"""
+        expected_str = f"[BaseModel] ({self.base_model.id}) {
+            self.base_model.__dict__
+            }"
+        self.assertEqual(str(self.base_model), expected_str)
 
-    def test_updated_at_is_datetime(self):
-        """Test that the 'updated_at' attribute is a datetime object."""
-        self.assertIsInstance(self.my_model.updated_at, datetime.datetime)
+    def test_save_method(self):
+        """Test the save method for updating 'updated_at' attribute"""
+        old_updated_at = self.base_model.updated_at
+        self.base_model.save()
+        new_updated_at = self.base_model.updated_at
+        self.assertGreater(new_updated_at, old_updated_at)
 
-    def test_save_updates_updated_at(self):
-        """Test that calling 'save' updates the 'updated_at' attribute."""
-        old_updated_at = self.my_model.updated_at
-        self.my_model.save()
-        new_updated_at = self.my_model.updated_at
-        self.assertNotEqual(old_updated_at, new_updated_at)
+    def test_to_dict_method(self):
+        """Test the to_dict method for dictionary representation"""
+        model_dict = self.base_model.to_dict()
+        self.assertIsInstance(model_dict, dict)
+        self.assertIn('id', model_dict)
+        self.assertIn('created_at', model_dict)
+        self.assertIn('updated_at', model_dict)
+        self.assertEqual(model_dict['__class__'], 'BaseModel')
 
-    def test_to_dict_returns_dict(self):
-        """Test that calling 'to_dict' returns a dictionary."""
-        my_dict = self.my_model.to_dict()
-        self.assertIsInstance(my_dict, dict)
-
-    def test_to_dict_contains_keys(self):
-        """Test that the keys 'id', 'created_at', 'updated_at', and '__class__' are in the dictionary."""
-        my_dict = self.my_model.to_dict()
-        expected_keys = ['id', 'created_at', 'updated_at', '__class__']
-        for key in expected_keys:
-            self.assertIn(key, my_dict)
-
-    def test_to_dict_datetime_format(self):
-        """Test that 'created_at' and 'updated_at' are in ISO format in the dictionary."""
-        my_dict = self.my_model.to_dict()
-        self.assertTrue(isinstance(my_dict['created_at'], str))
-        self.assertTrue(isinstance(my_dict['updated_at'], str))
+    def test_from_dict_method(self):
+        """Test creating an instance from a dictionary"""
+        model_dict = self.base_model.to_dict()
+        new_model = BaseModel(**model_dict)
+        self.assertIsInstance(new_model, BaseModel)
+        self.assertEqual(new_model.created_at, self.base_model.created_at)
+        self.assertEqual(new_model.id, self.base_model.id)
+        self.assertEqual(new_model.updated_at, self.base_model.updated_at)
