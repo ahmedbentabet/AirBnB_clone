@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Define the Module base_module"""
+import models
 import uuid
 import datetime
 
@@ -16,9 +17,13 @@ class BaseModel:
         # convert "created_at" and "updated_at" : str -> datetime
         if kwargs:
             if "created_at" in kwargs:
-                    kwargs["created_at"] = datetime.datetime.fromisoformat(kwargs["created_at"])
+                kwargs["created_at"] = datetime.datetime.fromisoformat(
+                    kwargs["created_at"]
+                )
             if "updated_at" in kwargs:
-                    kwargs["updated_at"] = datetime.datetime.fromisoformat(kwargs["updated_at"])
+                kwargs["updated_at"] = datetime.datetime.fromisoformat(
+                    kwargs["updated_at"]
+                )
 
             # Initializes a new instance with the values from kwargs
             for key, value in kwargs.items():
@@ -31,7 +36,7 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
             # add this new instance to the FileStorage __objects
-            models.storage.new(self)
+            # models.storage.new(self)
 
     def __str__(self):
         """Returns a string representation of the BaseModel instance"""
@@ -42,7 +47,7 @@ class BaseModel:
         """Updates the 'updated_at' attribute to the current datetime."""
 
         self.updated_at = datetime.datetime.now()
-        models.storage.save()
+        # models.storage.save()
 
     def to_dict(self):
         """
