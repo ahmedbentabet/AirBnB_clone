@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = list_of_args[0]
-        if class_name not in HBNBCommand.classes:
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
 
@@ -166,20 +166,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        class_name = list_of_args[0]
-        if class_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-
         if len(list_of_args) == 1:
             print("** instance id missing **")
-            return
-
-        obj_id = list_of_args[1]
-        key = f"{class_name}.{obj_id}"
-        # Check if the instance exists
-        if key not in storage.all():
-            print("** no instance found **")
             return
 
         if len(list_of_args) == 2:
@@ -188,6 +176,18 @@ class HBNBCommand(cmd.Cmd):
 
         if len(list_of_args) == 3:
             print("** value missing **")
+            return
+
+        class_name = list_of_args[0]
+        if class_name not in self.classes:
+            print("** class doesn't exist **")
+            return
+
+        obj_id = list_of_args[1]
+        key = f"{class_name}.{obj_id}"
+        # Check if the instance exists
+        if key not in storage.all():
+            print("** no instance found **")
             return
 
         attr_name = list_of_args[2]
