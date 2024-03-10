@@ -1,7 +1,7 @@
 ## The Structure of The Project:
 
 ```plaintext
-AirBnB_clone
+AirBnB_clone_repo
 │
 ├── models
 │   ├── __init__.py
