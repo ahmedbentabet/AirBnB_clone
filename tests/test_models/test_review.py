@@ -12,7 +12,7 @@ class ReviewTestReport(unittest.TestCase):
     def test_Review__initialization(self):
         """Verify the creation of Review objects."""
         first_instance = Review()
-        second_instnce = Review()
+        second_instance = Review()
         self.assertEqual(Review, type(Review()))
         self.assertNotEqual(first_instance.id, second_instance.id)
         self.assertIsInstance(first_instance, Review())
