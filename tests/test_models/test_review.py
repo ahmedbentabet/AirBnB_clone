@@ -15,7 +15,7 @@ class ReviewTestReport(unittest.TestCase):
         second_instance = Review()
         self.assertEqual(Review, type(Review()))
         self.assertNotEqual(first_instance.id, second_instance.id)
-        self.assertIsInstance(first_instance, Review())
+        self.assertIsInstance(first_instance, Review)
 
     def test_review__creation__storage(self):
         """Verify the creation and storge of a new Review instance."""
