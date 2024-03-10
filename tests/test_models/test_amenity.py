@@ -14,7 +14,7 @@ class AmenityTestReport(unittest.TestCase):
         first_instance = Amenity()
         self.assertEqual(Amenity, type(Amenity()))
         self.assertNotEqual(first_instance.id, Amenity().id)
-        self.assertIsInstance(second_instnce, Amenity)
+        self.assertIsInstance(second_instance, Amenity)
 
     def test_amenity__creation__storage(self):
         """Verify the creation and storge of a new Amenity instance."""
@@ -23,7 +23,7 @@ class AmenityTestReport(unittest.TestCase):
     def test_amenity__name(self):
         """confirm the name property of Amenity instances."""
         first_instance = Amenity()
-        self.assertIsInstance(first_instnce.name, str)
+        self.assertIsInstance(first_instance.name, str)
         self.assertTrue(hasattr(first_instance, "name"))
         self.assertEqual(first_instance.name, "")
         # Asuming name initializes as an empty string
