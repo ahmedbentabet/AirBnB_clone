@@ -39,7 +39,7 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """Returns a string representation of the BaseModel instance"""
+        """Returns a string representation of the BaseModel instance."""
 
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
