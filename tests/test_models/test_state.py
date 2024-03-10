@@ -14,7 +14,7 @@ class StateTestReport(unittest.TestCase):
         first_instance = State()
         self.assertEqual(State, type(State()))
         self.assertNotEqual(first_instance.id, State().id)
-        self.assertIsInstance(second_instance, State)
+        self.assertIsInstance(first_instance, State)
 
     def test_state_creation_storage(self):
         """Verify the creation and storge of a new State instance."""
