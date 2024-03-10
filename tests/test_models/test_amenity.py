@@ -14,7 +14,7 @@ class AmenityTestReport(unittest.TestCase):
         first_instance = Amenity()
         self.assertEqual(Amenity, type(Amenity()))
         self.assertNotEqual(first_instance.id, Amenity().id)
-        self.assertIsInstance(second_instance, Amenity)
+        self.assertIsInstance(first_instance, Amenity)
 
     def test_amenity__creation__storage(self):
         """Verify the creation and storge of a new Amenity instance."""
