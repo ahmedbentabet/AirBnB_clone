@@ -34,7 +34,7 @@ class PlaceTestReport(unittest.TestCase):
         """Exmaine the user_id property of Place objects."""
         first_instance = Place()
         self.assertIsInstance(first_instance.user_id, str)
-        self.assertTrue(hasattr(first_instnce, "user_id"))
+        self.assertTrue(hasattr(first_instance, "user_id"))
         self.assertEqual(first_instance.user_id, "")
         # Asuming user_id initializes as an empty string
 
