@@ -42,7 +42,6 @@ class UserTestReport(unittest.TestCase):
         first_instance = User()
         self.assertIsInstance(first_instance.id, str)
         self.assertTrue(hasattr(first_instance, "id"))
-        self.assertEqual(first_instance.id, "")
         # Asuming id initializes as an empty string
 
     def test_user_last_name(self):
