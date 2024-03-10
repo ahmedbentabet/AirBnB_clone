@@ -16,7 +16,7 @@ class PlaceTestReport(unittest.TestCase):
         second_instance = Place()
         self.assertEqual(Place, type(Place()))
         self.assertNotEqual(first_instance.id, second_instance.id)
-        self.assertIsInstance(second_instance, Place)
+        self.assertIsInstance(first_instance, Place)
 
     def test_place__creation__storage(self):
         """Verify the creation and storge of a new Place instance."""
