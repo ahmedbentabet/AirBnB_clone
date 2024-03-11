@@ -116,7 +116,7 @@ class Test__FileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.new(BaseModel(), 1)
 
-    def test__save(self):
+    def test__save_sf(self):
         """Verify that instances are saved in the file."""
         instance_base_model = BaseModel()
         instance_user = User()
