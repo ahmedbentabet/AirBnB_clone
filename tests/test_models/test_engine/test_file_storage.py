@@ -15,7 +15,7 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-class Test_FileStorage(unittest.TestCase):
+class Test__FileStorage(unittest.TestCase):
     """Test FileStorage class."""
 
     @classmethod
@@ -39,37 +39,37 @@ class Test_FileStorage(unittest.TestCase):
             pass
         FileStorage._FileStorage_objects = {}
 
-    def test_FileStorage_instance_creation(self):
+    def test__FileStorage_instance_creation(self):
         """Verify that a FileStorage instance is created."""
         self.assertEqual(type(FileStorage()), FileStorage)
 
-    def test_FileStorage_with_argument_raises_type_error(self):
+    def test__FileStorage_with_argument_raises_type_error(self):
         """Ensure TypeError is raised when a n-empty
         arg is passed to FileStorage."""
         self.assertRaises(TypeError, FileStorage, "non_empty_argument")
 
-    def test_FileStorage_file_path_is_string(self):
+    def test__FileStorage_file_path_is_string(self):
         """Verify that the file_path attribute is a string."""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
-    def test_FileStorage_objects_is_dictionary(self):
+    def test__FileStorage_objects_is_dictionary(self):
         """Verify that the objects attribute is a dictionary."""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
-    def test_ModelsStorage_instance_creation(self):
+    def test__ModelsStorage_instance_creation(self):
         """Verify that models.storage is an instance of FileStorage."""
         self.assertIsInstance(models.storage, FileStorage)
 
-    def test_all(self):
+    def test__all_rd(self):
         """Verify that the all method returns a dictionary."""
         self.assertEqual(dict, type(models.storage.all()))
 
-    def test_all_raises_type_error_with_argument(self):
+    def test__all_raises_type_error_with_argument(self):
         """Verify that TypeError is raised when an arg to all method."""
         with self.assertRaises(TypeError):
             models.storage.all(None)
 
-    def test_new(self):
+    def test__new_ss(self):
         """Verify that new method success adds instances to storage saved."""
         instance_base_model = BaseModel()
         instance_user = User()
@@ -111,12 +111,12 @@ class Test_FileStorage(unittest.TestCase):
                       models.storage.all().keys())
         self.assertIn(instance_review, models.storage.all().values())
 
-    def test_new_method_with_args_raises_type_error(self):
+    def test__new_method_with_args_raises_type_error(self):
         """Verify that TypeError is raised when an arg to new method."""
         with self.assertRaises(TypeError):
             models.storage.new(BaseModel(), 1)
 
-    def test_save(self):
+    def test__save(self):
         """Verify that instances are saved in the file."""
         instance_base_model = BaseModel()
         instance_user = User()
@@ -148,12 +148,12 @@ class Test_FileStorage(unittest.TestCase):
             self.assertIn("Amenity." + instance_amenity.id, file_contents)
             self.assertIn("Review." + instance_review.id, file_contents)
 
-    def test_save_raises_type_error_with_argument(self):
+    def test__save_raises_type_error_with_argument(self):
         """Verify that TypeError is raised when an arg is passed to save."""
         with self.assertRaises(TypeError):
             models.storage.save(None)
 
-    def test_reload(self):
+    def test__reload_rs(self):
         """Verify that instances are reloaded in the storage."""
         instance_base_model = BaseModel()
         instance_user = User()
@@ -184,7 +184,7 @@ class Test_FileStorage(unittest.TestCase):
         self.assertIn("Amenity." + instance_amenity.id, reloaded_obj)
         self.assertIn("Review." + instance_review.id, reloaded_obj)
 
-    def test_reload_raises_type_error_with_argument(self):
+    def test__reload_raises_type_error_with_argument(self):
         """Verify that TypeError is raised when an arg is passed to reload."""
         with self.assertRaises(TypeError):
             models.storage.reload(None)
