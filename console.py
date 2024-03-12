@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Command interpreter for the HBNB project."""
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -231,6 +232,16 @@ class HBNBCommand(cmd.Cmd):
                     if key.startswith(class_name):
                         number_of_instances += 1
                 print(number_of_instances)
+
+            # handle <class name>.show(<id>)
+            elif list_of_args[1].startswith("show(") \
+                and list_of_args[1].endswith(")"):
+
+                # Extract the ID from the show() command
+                instance_id = list_of_args[1][6:-2]
+
+                arg = f"{class_name} {instance_id}"
+                self.do_show(arg)
 
 
 if __name__ == '__main__':
