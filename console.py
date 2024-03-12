@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
                 class_name = arg.split()[0]
                 new_instance = eval(class_name)()
 
-                # new_instance -->"<obj_clas>.<id>" = <obj.to_dict()> --> json file
+                # new_instance:"<obj_clas>.<id>" = <obj.to_dict()> -> json.file
                 new_instance.save()
                 print(new_instance.id)
             except NameError:
