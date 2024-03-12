@@ -224,6 +224,14 @@ class HBNBCommand(cmd.Cmd):
             if list_of_args[1] == "all()":
                 self.do_all(class_name)
 
+            # handle <class name>.count()
+            elif list_of_args[1] == "count()":
+                number_of_instances = 0
+                for key in storage.all().keys():
+                    if key.startswith(class_name):
+                        number_of_instances += 1
+                print(number_of_instances)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
