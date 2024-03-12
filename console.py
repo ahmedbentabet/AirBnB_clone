@@ -214,23 +214,15 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def default(self, arg):
-        """Handle default command for <class name>.all()"""
+        """Handle default commands"""
+
         list_of_args = arg.split('.')
-
-        # Handle <class name>.all()
-        if len(list_of_args) == 2 and list_of_args[1] == "all()":
+        if len(list_of_args) == 2:
             class_name = list_of_args[0]
-            self.do_all(class_name)
-            # if class_name not in self.classes:
-            #     print("** class doesn't exist **")
-            #     return
 
-            # # Print instances of a specific class
-            # objs = []
-            # for key in storage.all().keys():
-            #     if key.startswith(class_name):
-            #         objs.append(storage.all()[key])
-            # print([str(obj) for obj in objs])
+            # handle <class name>.all()
+            if list_of_args[1] == "all()":
+                self.do_all(class_name)
 
 
 if __name__ == '__main__':
