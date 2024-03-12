@@ -216,26 +216,21 @@ class HBNBCommand(cmd.Cmd):
     def default(self, arg):
         """Handle default command for <class name>.all()"""
         list_of_args = arg.split('.')
+
+        # Handle <class name>.all()
         if len(list_of_args) == 2 and list_of_args[1] == "all()":
             class_name = list_of_args[0]
-            if class_name not in self.classes:
-                print("** class doesn't exist **")
-                return
+            self.do_all(class_name)
+            # if class_name not in self.classes:
+            #     print("** class doesn't exist **")
+            #     return
 
-            # Print instances of a specific class
-            objs = []
-            for key in storage.all().keys():
-                if key.startswith(class_name):
-                    objs.append(storage.all()[key])
-            print([str(obj) for obj in objs])
-        #     class_name = list_of_args[0]
-        #     try:
-        #         instances = [str(obj) for obj in storage.all()[class_name].values()]
-        #         print(instances)
-        #     except KeyError:
-        #         print("** class doesn't exist **")
-        # else:
-        #     print("*** Unknown syntax: {}".format(line))
+            # # Print instances of a specific class
+            # objs = []
+            # for key in storage.all().keys():
+            #     if key.startswith(class_name):
+            #         objs.append(storage.all()[key])
+            # print([str(obj) for obj in objs])
 
 
 if __name__ == '__main__':
