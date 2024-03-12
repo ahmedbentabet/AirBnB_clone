@@ -17,13 +17,13 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     classes = [
-      "BaseModel",
-      "User",
-      "State",
-      "City",
-      "Amenity",
-      "Place",
-      "Review",
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Amenity",
+        "Place",
+        "Review",
     ]
 
     def do_quit(self, arg):
@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = list_of_args[0]
-        if class_name not in HBNBCommand.classes:
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
 
@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = list_of_args[0]
-        if class_name not in HBNBCommand.classes:
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
 
