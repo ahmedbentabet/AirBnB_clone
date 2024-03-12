@@ -192,14 +192,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
         attr_name = list_of_args[2]
-    # [1:-1] to remove double quotes and get what is inside
-    # if list_of_args[3].startswith('"') and list_of_args[3].endswith('"'):
-    #     attr_value = list_of_args[3][1:-1]
-    # elif list_of_args[3].startswith("'") and list_of_args[3].endswith("'"):
-    #     attr_value = list_of_args[3][1:-1]
-    # else:
-    #     attr_value = list_of_args[3]
 
+        # remove quotes and get what is inside
         attr_value = list_of_args[3].strip('"\'')
 
         obj = storage.all()[key]
@@ -221,11 +215,11 @@ class HBNBCommand(cmd.Cmd):
         if len(list_of_args) == 2:
             class_name = list_of_args[0]
 
-            # handle <class name>.all()
+            # Handle <class name>.all()
             if list_of_args[1] == "all()":
                 self.do_all(class_name)
 
-            # handle <class name>.count()
+            # Handle <class name>.count()
             elif list_of_args[1] == "count()":
                 number_of_instances = 0
                 for key in storage.all().keys():
@@ -233,9 +227,9 @@ class HBNBCommand(cmd.Cmd):
                         number_of_instances += 1
                 print(number_of_instances)
 
-            # handle <class name>.show(<id>)
+            # Handle <class name>.show(<id>)
             elif list_of_args[1].startswith("show(") \
-                and list_of_args[1].endswith(")"):
+                    and list_of_args[1].endswith(")"):
 
                 # Extract the ID from the show() command
                 instance_id = list_of_args[1][6:-2]
