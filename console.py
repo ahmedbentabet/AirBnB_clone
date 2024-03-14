@@ -250,19 +250,28 @@ class HBNBCommand(cmd.Cmd):
                 arg = f"{class_name} {instance_id}"
                 self.do_destroy(arg)
 
-            # <class name>.update(<id>, <attribute name>, <attribute value>
+            # Handle <class name>.update(...)
             elif list_of_args[1].startswith("update(") \
                     and list_of_args[1].endswith(")"):
 
-                # Extract the ID from the update() command
+                #Handle <class name>.update(<id>, <attr name>, <attr value>)
                 update_args = list_of_args[1][8:-1].split(',')
                 if len(update_args) == 3:
                     instance_id = update_args[0].strip('"\' ')
                     attr_name = update_args[1].strip('"\' ')
                     attr_value = update_args[2].strip('"\' ')
 
-                arg = f"{class_name} {instance_id} {attr_name} {attr_value}"
-                self.do_update(arg)
+                    arg = f"{class_name} {instance_id} {attr_name} {attr_value}"
+                    self.do_update(arg)
+
+                #Handle <class name>.update(<id>, <dictionary representation>)
+                update_args = list_of_args[1][8:-1].split(',', 1)
+                if len(update_args) == 2:
+                    instance_id = update_args[0].strip('"\' ')
+                    dict_repr = eval(update_args[1])
+                    for key, value in dict_repr.items():
+                        arg = f"{class_name} {instance_id} {key} {value}"
+                        self.do_update(arg)
 
 
 if __name__ == '__main__':
