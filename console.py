@@ -246,12 +246,12 @@ class HBNBCommand(cmd.Cmd):
 
                 # Extract the ID from the destroy() command
                 instance_id = list_of_args[1][9:-2]
-                key = f"{class_name}.{instance_id}"
-                try:
-                    del storage.all()[key]
-                    storage.save()
-                except KeyError:
-                    print("** no instance found **")
+
+                arg = f"{class_name} {instance_id}"
+                self.do_destroy(arg)
+
+            # <class name>.update(<id>, <attribute name>, <attribute value>
+
 
 
 if __name__ == '__main__':
