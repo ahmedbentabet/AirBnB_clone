@@ -240,6 +240,16 @@ class HBNBCommand(cmd.Cmd):
                 arg = f"{class_name} {instance_id}"
                 self.do_show(arg)
 
+            # Handle <class name>.destroy(<id>)
+            elif list_of_args[1].startswith("destroy(") \
+                    and list_of_args[1].endswith(")"):
+
+                # Extract the ID from the destroy() command
+                instance_id = list_of_args[1][9:-2]
+                key = f"{class_name}.{instance_id}"
+                del storage.all()[key]
+                storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
