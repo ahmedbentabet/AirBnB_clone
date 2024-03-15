@@ -256,7 +256,7 @@ class HBNBCommand(cmd.Cmd):
 
                 #Handle <class name>.update(<id>, <attr name>, <attr value>)
                 update_args = list_of_args[1][8:-1].split(',')
-                if len(update_args) == 3:
+                if len(update_args) == 3 and '{' not in update_args[1]:
                     instance_id = update_args[0].strip('"\' ')
                     attr_name = update_args[1].strip('"\' ')
                     attr_value = update_args[2].strip('"\' ')
@@ -265,8 +265,8 @@ class HBNBCommand(cmd.Cmd):
                     self.do_update(arg)
 
                 #Handle <class name>.update(<id>, <dictionary representation>)
-                update_args = list_of_args[1][8:-1].split(',', 1)
-                if len(update_args) == 2:
+                else:
+                    update_args = list_of_args[1][8:-1].split(',', 1)
                     instance_id = update_args[0].strip('"\' ')
                     dict_repr = eval(update_args[1])
                     for key, value in dict_repr.items():
