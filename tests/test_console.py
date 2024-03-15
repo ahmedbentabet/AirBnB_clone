@@ -94,7 +94,7 @@ class PromptTestHBNBCommand(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd(".update()"))
             self.assertEqual(expected_output, output.getvalue().strip())
 
-    def test_help_command__output(self):
+    def test__help_command__output(self):
         """Verify the output of the 'help' command."""
         expected_output = "*** Unknown syntax: .help()"
         with patch("sys.stdout", new=StringIO()) as output:
