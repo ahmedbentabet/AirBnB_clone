@@ -1,11 +1,3 @@
-.container {
-  max-width: 1000px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: grid;
-  place-items: center;
-}
-
 .filters {
   color: white;
   height: 70px;
@@ -13,6 +5,8 @@
   border: 1px solid #DDDDDD;
   border-radius: 4px;
   position: relative; /* Set position to relative for absolute positioning of the button */
+/*   display: flex;
+  align-items: center; */
 }
 
 .search-btn {
@@ -36,6 +30,7 @@
   top: 50%;
   transform: translateY(-50%);
   right: 30px;
+  cursor: pointer;
 }
 
 .search-btn:hover {
