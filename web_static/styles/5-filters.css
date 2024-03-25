@@ -1,10 +1,10 @@
-.container {
+/* .container {
   max-width: 1000px;
   margin-top: 30px;
   margin-bottom: 30px;
   display: grid;
   place-items: center;
-}
+} */
 
 .filters {
   color: white;
@@ -12,7 +12,9 @@
   width: 100%;
   border: 1px solid #DDDDDD;
   border-radius: 4px;
-  position: relative; /* Set position to relative for absolute positioning of the button */
+  position: relative;     /* Set position to relative for absolute positioning of the button */
+  display: flex;
+  flex-direction: row;
 }
 
 .search-btn {
@@ -42,29 +44,18 @@
 }
 
 /* Locations filter */
-.filters .locations {
+.locations {
   width: 25%;
   height: 100%;
   border-right: 1px solid #DDDDDD; /* Border on the right side */
   box-sizing: border-box; /* Include border in width calculation */
-  float: left; /* Ensures side-by-side placement */
+  /* float: left; */ /* Ensures side-by-side placement */
   margin-left: 25px;
-  margin-bottom: 25px;
-}
-
-.filters .locations h3 {
-  color: black;
-  font-weight: 600;
-}
-
-.filters .locations h4 {
-  color: black;
-  font-weight: 400;
-  font-size: 14px;
+  margin-bottom: 0;
 }
 
 /* Amenities filter */
-.filters .amenities {
+.amenities {
   width: 25%;
   height: 100%;
   box-sizing: border-box; /* Include border in width calculation */
@@ -72,13 +63,18 @@
   margin-left: 25px;
 }
 
-.filters .amenities h3 {
+.locations h3,
+.amenities h3 {
   color: black;
   font-weight: 600;
+  margin: 16px auto 0;
 }
 
-.filters .amenities h4 {
+.locations h4,
+.amenities h4 {
   color: black;
   font-weight: 400;
   font-size: 14px;
+  margin: 0 auto;
 }
+
