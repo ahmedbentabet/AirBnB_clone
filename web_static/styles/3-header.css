@@ -3,13 +3,16 @@ header {
   height: 70px;
   width: 100%;
   border-bottom: 1px #CCCCCC solid;
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items vertically */
 }
 
 .logo {
-  width: 160px;
-  height:60px;
   background-image: url("../images/logo.png");
-  background-size: cover;
+  background-size: contain; /* ensures the logo fits within its container without stretching */
   background-repeat: no-repeat;
+  height: 60px; /* Set logo height */
+  width: 142px; /* Set logo width */
+  margin-left: 20px; /* Add 20px space at the left */
 }
 

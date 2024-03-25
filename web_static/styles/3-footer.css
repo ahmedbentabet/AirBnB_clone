@@ -1,10 +1,10 @@
 footer {
-  color: black;
   height: 60px;                  /* Height of the footer */
   width: 100%;                   /* Width of the footer to span the entire width of the page */
-  border-top: 1px #CCCCCC solid;
+  border-top: 1px solid #CCCCCC;
   position: fixed;               /* Fixed position to keep the footer at the bottom of the viewport */
   bottom: 0;                     /* Distance from the bottom of the viewport */
-  display: grid;                 /* Using grid layout for centering */
-  place-items: center;           /* Centering the content vertically and horizontally */
+  display: flex;                 /* Use flexbox layout */
+  justify-content: center;       /* Center content horizontally */
+  align-items: center;           /* Center content vertically */
 }
