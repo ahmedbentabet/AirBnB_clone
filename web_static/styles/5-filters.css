@@ -1,11 +1,3 @@
-/* .container {
-  max-width: 1000px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: grid;
-  place-items: center;
-} */
-
 .filters {
   color: white;
   height: 70px;
@@ -59,7 +51,7 @@
   width: 25%;
   height: 100%;
   box-sizing: border-box; /* Include border in width calculation */
-  float: left; /* Ensures side-by-side placement */
+  /* float: left; */ /* Ensures side-by-side placement */
   margin-left: 25px;
 }
 
